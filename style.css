@@ -1,0 +1,30 @@
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.btns {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.btn {
+  max-width: 100px;
+  max-height: 100px;
+  border-radius: 5px;
+}
+
+.scores {
+  color: black;
+  margin-top: 20px;
+}
+
+.final-scores {
+  background-color: black;
+  color: red;
+  border-radius: 5px;
+  margin-top: 20px;
+}

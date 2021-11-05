@@ -1,42 +1,74 @@
-function rockPaperSic() {
-  let playerScore = 0;
-  let compScore = 0;
-  let gameCount = 0;
+"use strict";
+const rockBtn = document.querySelector(".rock-btn");
+const paperBtn = document.querySelector(".paper-btn");
+const scissorsBtn = document.querySelector(".scis-btn");
+const nextGame = document.querySelector(".next-game");
+let scores = document.querySelector(".scores");
+let finalScore = document.querySelector(".final-scores");
 
-  while (gameCount < 6) {
+let playerIn;
+let playerScore = 0;
+let compScore = 0;
+let gameCount = 0;
+let gameFinished = false;
+let roundsDone = false;
+
+function rockPaperSic() {
+  if (roundsDone == false && playerScore < 5 && compScore < 5) {
     const arr = ["rock", "paper", "scissors"];
     const randNum = Math.floor(Math.random() * 3);
     const compIn = arr[randNum];
-    const playerIn = prompt("Rock, Paper Or Scissors?").toLowerCase();
+
     if (playerIn === compIn) {
-      console.log(
-        `Draw. Scores: Player: ${playerScore} & Computer: ${compScore}`
-      );
+      scores.textContent = `Draw. No One Scores: Player: ${playerScore} & Computer: ${compScore}`;
     } else if (playerIn === "rock" && compIn === "scissors") {
       playerScore++;
-      console.log(
-        `Player Wins ${playerIn} beats ${compIn}. Scores: Player: ${playerScore} & Computer: ${compScore}`
-      );
+      scores.textContent = `Player Wins ${playerIn} beats ${compIn}. Scores: Player: ${playerScore} & Computer: ${compScore}`;
     } else if (playerIn === "paper" && compIn === "rock") {
       playerScore++;
-      console.log(
-        `Player Wins ${playerIn} beats ${compIn}. Scores: Player: ${playerScore} & Computer: ${compScore}`
-      );
+      scores.textContent = `Player Wins ${playerIn} beats ${compIn}. Scores: Player: ${playerScore} & Computer: ${compScore}`;
     } else if (playerIn === "scissors" && compIn === "paper") {
       playerScore++;
-      console.log(
-        `Player Wins ${playerIn} beats ${compIn}. Scores: Player: ${playerScore} & Computer: ${compScore}`
-      );
+      scores.textContent = `Player Wins ${playerIn} beats ${compIn}. Scores: Player: ${playerScore} & Computer: ${compScore}`;
     } else {
       compScore++;
-      console.log(
-        `You Lose ${compIn} beats ${playerIn}. Scores: Player: ${playerScore} & Computer: ${compScore}`
-      );
+      scores.textContent = `You Lose ${compIn} beats ${playerIn}. Scores: Player: ${playerScore} & Computer: ${compScore}`;
     }
-    gameCount++;
   }
-
-  return `finalScore is: ${playerScore} & ${compScore}`;
+  nextGame.textContent = "Next Round";
+  roundsDone = true;
+  if (playerScore === 5) {
+    finalScore.textContent = `Final Scores are ${playerScore} and ${compScore} Player Wins!!🎉`;
+    nextGame.textContent = "New Game";
+    if (compScore === 5) {
+      finalScore.textContent = `Final Scores are ${playerScore} and ${compScore} Computer Wins!!🤥`;
+      nextGame.textContent = "New Game";
+    }
+  }
 }
 
-console.log(rockPaperSic());
+nextGame.addEventListener("click", function (e) {
+  roundsDone = false;
+  if (nextGame.textContent == "New Game") {
+    playerScore = 0;
+    compScore = 0;
+    roundsDone = false;
+    finalScore.textContent = "";
+    scores.textContent = "";
+  }
+});
+
+rockBtn.addEventListener("click", function (e) {
+  playerIn = e.target.value;
+  rockPaperSic();
+});
+
+paperBtn.addEventListener("click", function (e) {
+  playerIn = e.target.value;
+  rockPaperSic();
+});
+
+scissorsBtn.addEventListener("click", function (e) {
+  playerIn = e.target.value;
+  rockPaperSic();
+});
