@@ -40,10 +40,10 @@ function rockPaperSic() {
   if (playerScore === 5) {
     finalScore.textContent = `Final Scores are ${playerScore} and ${compScore} Player Wins!!🎉`;
     nextGame.textContent = "New Game";
-    if (compScore === 5) {
-      finalScore.textContent = `Final Scores are ${playerScore} and ${compScore} Computer Wins!!🤥`;
-      nextGame.textContent = "New Game";
-    }
+  }
+  if (compScore === 5) {
+    finalScore.textContent = `Final Scores are ${playerScore} and ${compScore} Computer Wins!!🤥`;
+    nextGame.textContent = "New Game";
   }
 }
 
